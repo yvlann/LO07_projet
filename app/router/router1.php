@@ -45,12 +45,19 @@ switch ($action) {
 
  case "viewMoncompte" :
  case "viewRdv" :
- case "producteurReadId" :
- case "producteurCreate" :
- case "producteurCreated" :
- case "producteurReadRegion" :
- case "producteurNombreRegion" :
+ case "reserveReadPraticien" :
+ case "reserveReadSceance" :
+ case "reserveSuccess" :
+
   ControllerPatient::$action();
+  break;
+
+
+ case "doctolibDeconnexion" :
+ case "doctolibVerification" :
+ case "doctolibConnexion" :
+ case "doctolibConnexionWrong" :
+  ControllerDoctolib::$action();
   break;
 
 
@@ -58,6 +65,7 @@ switch ($action) {
  // Tache par défaut
  default:
   $action = "doctolibAccueil";
+  
   ControllerDoctolib::$action();
 }
 ?>

@@ -51,7 +51,7 @@
        
     
     //menu admin
-    if($current->getStatut()==ModelPersonne::ADMINISTRATEUR){
+    if($_SESSION['login']!="vide"&&$current->getStatut()==ModelPersonne::ADMINISTRATEUR){
     
         echo("<li class=\"nav-item dropdown\">");
         echo("<a class=\"nav-link dropdown-toggle\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">administrateur</a>");
@@ -70,7 +70,7 @@
         
         
         //menu praticien
-    }elseif ($current->getStatut()==ModelPersonne::PRATICIEN) {
+    }elseif ($_SESSION['login']!="vide"&&$current->getStatut()==ModelPersonne::PRATICIEN) {
         
         echo("<li class=\"nav-item dropdown\">");
         echo("<a class=\"nav-link dropdown-toggle\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">praticien</a>");
@@ -87,14 +87,14 @@
               
         
         //menu patient
-    }elseif ($current->getStatut()==ModelPersonne::PATIENT) {
+    }elseif ($_SESSION['login']!="vide"&&$current->getStatut()==ModelPersonne::PATIENT) {
         
         echo("<li class=\"nav-item dropdown\">");
         echo("<a class=\"nav-link dropdown-toggle\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">patient</a>");
         echo("<ul class=\"dropdown-menu\">");
         echo("<li><a class=\"dropdown-item\" href=\"router1.php?action=viewMoncompte\">MonCompte</a></li>");
         echo("<li><a class=\"dropdown-item\" href=\"router1.php?action=viewRdv\">Liste de mes rendez-vous</a></li>");
-        echo("<li><a class=\"dropdown-item\" href=\"\">Prendre un RDV avec un praticien</a></li>");
+        echo("<li><a class=\"dropdown-item\" href=\"router1.php?action=reserveReadPraticien\">Prendre un RDV avec un praticien</a></li>");
         
         echo("</ul>");
         echo("</li>");
@@ -126,9 +126,9 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Se connecter</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router1.php?action=mesPropositions">Login</a></li>
+            <li><a class="dropdown-item" href="router1.php?action=doctolibConnexion">Login</a></li>
             <li><a class="dropdown-item" href="router1.php?action=mesPropositions">s'inscrire</a></li>
-            <li><a class="dropdown-item" href="router1.php?action=mesPropositions">deconnexion</a></li>
+            <li><a class="dropdown-item" href="router1.php?action=doctolibDeconnexion">deconnexion</a></li>
           </ul>
         </li>
       </ul>

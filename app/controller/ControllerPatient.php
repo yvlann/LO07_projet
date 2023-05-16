@@ -41,6 +41,56 @@ class ControllerPatient {
    echo ("ControllerPraticien : viewDisponibilite : vue = $vue");
   require ($vue);
  }
+ 
+ //Affiche un premier formulaire avec la liste des praticiens
+   public static function reserveReadPraticien() {
+      session_start();
+     $login=$_SESSION['login'];
+     
+  $current = ModelPersonne::getOnePersonne($login);
+  $disponible_id = ModelRDV::getDisponibiliteId();//get disponible praticien_id
+  $personnes=array();
+  foreach ($disponible_id as $element) {
+      $personnes[$element]=ModelPersonne::getOnePersonneId($element);
+  }
+
+  // ----- Construction chemin de la vue
+  include 'config.php';
+  $vue = $root . '/app/view/patient/viewPraticien.php';
+  require ($vue);
+ }
+ 
+ //Affiche un seconde formulaire avec la liste des seances
+    public static function reserveReadSceance() {
+      session_start();
+     $login=$_SESSION['login'];
+     
+  $current = ModelPersonne::getOnePersonne($login);
+  
+  $seance=ModelRDV::getDisponibilite($_GET['id']);
+  
+
+  // ----- Construction chemin de la vue
+  include 'config.php';
+  $vue = $root . '/app/view/patient/viewSceance.php';
+  require ($vue);
+ }
+ 
+ //Affiche un formulaire si avec succes
+     public static function reserveSuccess() {
+      session_start();
+     $login=$_SESSION['login'];
+     
+  $current = ModelPersonne::getOnePersonne($login);
+  
+  $seance=ModelRDV::updateRdv($_GET['id'],$current->getId());
+  
+
+  // ----- Construction chemin de la vue
+  include 'config.php';
+  $vue = $root . '/app/view/patient/viewUpdateSuccess.php';
+  require ($vue);
+ }
     
 }
 

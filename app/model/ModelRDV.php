@@ -107,6 +107,26 @@ class ModelRDV {
    return NULL;
   }
  }
+ 
+ 
+ //return available patricien of $current
+    public static function getDisponibiliteId() {
+  try {
+   $database = Model::getInstance();
+   
+   $query = "select DISTINCT praticien_id from rendezvous where patient_id=0";
+   $statement = $database->prepare($query);
+   $statement->execute();
+     
+   
+   $results = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
+   
+   return $results;
+  } catch (PDOException $e) {
+   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+   return NULL;
+  }
+ }
 
  //return RDV of praticien_id
     public static function getMesRdv($pid) {
@@ -211,6 +231,34 @@ class ModelRDV {
    $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRDV");
    
    return $results;
+  } catch (PDOException $e) {
+   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+   return NULL;
+  }
+ }
+ 
+ 
+ public static function updateRdv($id_rdv,$id_patient) {
+  try {
+   $database = Model::getInstance();
+   $query = "UPDATE rendezvous SET patient_id = :id_patient WHERE id = :id_rdv;";
+   $statement = $database->prepare($query);
+   $statement->execute([
+     'id_patient' => $id_patient,'id_rdv' => $id_rdv ]);
+     
+   
+   if($statement){
+       $query="SELECT * FROM `rendezvous` WHERE id= :id_rdv ";
+       $statement = $database->prepare($query);
+        $statement->execute([
+          'id_rdv' => $id_rdv
+        ]);
+        
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRDV");
+        return $results[0];
+   } 
+   return $statement;
+   
   } catch (PDOException $e) {
    printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
    return NULL;
