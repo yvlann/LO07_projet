@@ -1,8 +1,8 @@
 
 <!-- ----- debut Router1 -->
 <?php
-require ('../controller/ControllerVin.php');
-require ('../controller/ControllerProducteur.php');
+require ('../controller/ControllerPraticien.php');
+require ('../controller/ControllerPatient.php');
 require ('../controller/ControllerDoctolib.php');
 require ('../controller/ControllerAdministrateur.php');
 // --- récupération de l'action passée dans l'URL
@@ -34,22 +34,23 @@ switch ($action) {
   break;
 
 
- case "vinReadAll" :
- case "vinReadOne" :
- case "vinReadId" :
- case "vinCreate" :
- case "vinCreated" :
+ case "viewDisponibilite" :
+ case "disponibiliteAdd" :
+ case "disponibiliteAdded" :
+ case "disponibiliteAddWrong" :
+ case "viewRdvPatients" :
+ case "viewMesPatients" :
   ControllerPraticien::$action();
   break;
 
- case "producteurReadAll" :
- case "producteurReadOne" :
+ case "viewMoncompte" :
+ case "viewRdv" :
  case "producteurReadId" :
  case "producteurCreate" :
  case "producteurCreated" :
  case "producteurReadRegion" :
  case "producteurNombreRegion" :
-  ControllerProducteur::$action();
+  ControllerPatient::$action();
   break;
 
 

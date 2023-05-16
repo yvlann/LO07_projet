@@ -153,6 +153,25 @@ class ModelPersonne {
    return NULL;
   }
  }
+ 
+ 
+   public static function getOnePersonneId($id) {
+  try {
+   $database = Model::getInstance();
+   
+   $query = "select * from personne where id = :id";
+   $statement = $database->prepare($query);
+   $statement->execute([
+     'id' => $id
+   ]);
+   $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelPersonne");
+   
+   return $results[0];
+  } catch (PDOException $e) {
+   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+   return NULL;
+  }
+ }
  //======================================================================================================================
 // retourne une liste des id
  public static function getAllId() {

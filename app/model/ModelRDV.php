@@ -88,7 +88,134 @@ class ModelRDV {
    return NULL;
   }
  }
+ 
+ //return available RDV of $current
+   public static function getDisponibilite($pid) {
+  try {
+   $database = Model::getInstance();
+   
+   $query = "select * from rendezvous where praticien_id = :pid AND patient_id=0";
+   $statement = $database->prepare($query);
+   $statement->execute([
+     'pid' => $pid
+   ]);
+   $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRDV");
+   
+   return $results;
+  } catch (PDOException $e) {
+   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+   return NULL;
+  }
+ }
 
+ //return RDV of praticien_id
+    public static function getMesRdv($pid) {
+  try {
+   $database = Model::getInstance();
+   
+   $query = "select * from rendezvous where praticien_id = :pid AND patient_id>0";
+   $statement = $database->prepare($query);
+   $statement->execute([
+     'pid' => $pid
+   ]);
+   $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRDV");
+   
+   return $results;
+  } catch (PDOException $e) {
+   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+   return NULL;
+  }
+ }
+ 
+//retourner RDV selon patient_id
+    public static function getPatientRdv($pid) {
+  try {
+   $database = Model::getInstance();
+   
+   $query = "select * from rendezvous where patient_id = :pid ";
+   $statement = $database->prepare($query);
+   $statement->execute([
+     'pid' => $pid
+   ]);
+   $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRDV");
+   
+   return $results;
+  } catch (PDOException $e) {
+   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+   return NULL;
+  }
+ }
+ 
+ 
+
+ 
+ //retourner RDV selon id
+    public static function getRdv($id) {
+  try {
+   $database = Model::getInstance();
+   
+   $query = "select * from rendezvous where id = :id";
+   $statement = $database->prepare($query);
+   $statement->execute([
+     'id' => $id
+   ]);
+   $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRDV");
+   
+   return $results[0];
+  } catch (PDOException $e) {
+   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+   return NULL;
+  }
+ }
+ 
+  public static function insertDisponibilite($patient_id, $praticien_id, $rdv_date) {
+  try {
+   $database = Model::getInstance();
+
+   // recherche de la valeur de la clé = max(id) + 1
+   $query = "select max(id) from rendezvous";
+   $statement = $database->query($query);
+   $tuple = $statement->fetch();
+   $id = $tuple['0'];
+   $id++;
+
+   // ajout d'un nouveau tuple;
+   $query = "insert into rendezvous value (:id, :patient_id, :praticien_id, :rdv_date)";
+   $statement = $database->prepare($query);
+   $statement->execute([
+     'id' => $id,
+     'patient_id' => $patient_id,
+     'praticien_id' => $praticien_id,
+     'rdv_date' => $rdv_date
+   ]);
+   return $id;
+  } catch (PDOException $e) {
+   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+   return -1;
+  }
+ }
+ 
+ 
+ 
+    public static function checkDisponibilite($date,$pid) {
+  try {
+   $database = Model::getInstance();
+   $date=$date."%";
+   
+   $query = "SELECT * FROM `rendezvous` WHERE rdv_date LIKE :date AND praticien_id= :pid ";
+   $statement = $database->prepare($query);
+   $statement->execute([
+     'date' => $date,
+     'pid' => $pid
+   ]);
+   $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRDV");
+   
+   return $results;
+  } catch (PDOException $e) {
+   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+   return NULL;
+  }
+ }
 
  //================================================================================================
 // retourne une liste des id
