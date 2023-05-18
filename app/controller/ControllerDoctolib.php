@@ -56,7 +56,7 @@ class ControllerDoctolib {
   require ($vue);
  }
  
-   // --- page de Connexion
+   // --- page de Connexion wrong
  public static function doctolibConnexionWrong() {
      session_start();
      if($_SESSION['login']!="vide"){
@@ -96,10 +96,75 @@ class ControllerDoctolib {
  
 
  
- //==================================================================================================
-  public static function mesPropositions() {
+ 
+  
+  // --- page de s'inscrire
+ public static function doctolibInscription() {
+     session_start();
+     if($_SESSION['login']!="vide"){
+         $login=$_SESSION['login'];
+         $current = ModelPersonne::getOnePersonne($login);
+     }
+     $specialite=ModelSpecialite::getAll();
+     
+  
   include 'config.php';
-  $vue = $root . '/public/documentation/mesPropositions.php';
+  $vue = $root . '/app/view/doctolib/viewDoctolibInscription.php';
+  if (DEBUG)
+   echo ("ControllerDoctolib : doctolibAccueil : vue = $vue");
+  require ($vue);
+ }
+ 
+ //verifier si login est valide
+  public static function doctolibInscriptionVerification() {
+     session_start();
+     if($_SESSION['login']!="vide"){
+         $login=$_SESSION['login'];
+         $current = ModelPersonne::getOnePersonne($login);
+     }
+     $existe=ModelPersonne::verifierPersonneExiste($_GET['login']);
+     include 'config.php';
+     if(NULL==$existe){
+         $id = ModelPersonne::insertPersonne($_GET['nom'], $_GET['prenom'], $_GET['adresse'], $_GET['login'], $_GET['password'], $_GET['statut'], $_GET['specialite']);
+         $inserted = ModelPersonne::getOnePersonneId($id);
+         
+         $vue = $root . '/app/view/doctolib/viewDoctolibNewLogin.php';
+     }else{
+         $specialite=ModelSpecialite::getAll();
+         $vue = $root . '/app/view/doctolib/viewDoctolibInscriptionWrong.php';
+     }
+     
+  
+  
+  
+  if (DEBUG)
+   echo ("ControllerDoctolib : doctolibInscriptionVerification : vue = $vue");
+  require ($vue);
+ }
+ 
+   public static function mesUtilisations() {
+       session_start();
+     if($_SESSION['login']!="vide"){
+         $login=$_SESSION['login'];
+         $current = ModelPersonne::getOnePersonne($login);
+     }
+  include 'config.php';
+  $vue = $root . '/public/documentation/mesUtilisations.php';
+  if (DEBUG)
+   echo ("ControllerProducteur : caveAccueil : vue = $vue");
+  require ($vue);
+ }
+ 
+ 
+ 
+  public static function mesAmeliorations() {
+      session_start();
+     if($_SESSION['login']!="vide"){
+         $login=$_SESSION['login'];
+         $current = ModelPersonne::getOnePersonne($login);
+     }
+  include 'config.php';
+  $vue = $root . '/public/documentation/mesAmeliorations.php';
   if (DEBUG)
    echo ("ControllerDoctolib : caveAccueil : vue = $vue");
   require ($vue);

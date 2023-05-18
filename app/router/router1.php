@@ -57,6 +57,11 @@ switch ($action) {
  case "doctolibVerification" :
  case "doctolibConnexion" :
  case "doctolibConnexionWrong" :
+ case "doctolibInscription" :
+ case "doctolibInscriptionVerification" :
+ case "mesUtilisations" :
+ case "mesAmeliorations" :
+     
   ControllerDoctolib::$action();
   break;
 

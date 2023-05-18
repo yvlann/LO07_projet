@@ -1,3 +1,7 @@
+<!-- ----- debut ControllerPatient -->
+
+
+
 <?php
 require_once '../model/ModelSpecialite.php';
 require_once '../model/ModelPersonne.php';
@@ -95,3 +99,6 @@ class ControllerPatient {
 }
 
 ?>
+
+
+<!-- ----- fin ControllerPatient -->

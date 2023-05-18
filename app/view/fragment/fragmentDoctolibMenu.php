@@ -117,8 +117,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Innovations</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router1.php?action=mesPropositions">Proposez une fonctionnalité originale</a></li>
-            <li><a class="dropdown-item" href="router1.php?action=mesPropositions">Proposez une amélioration du code MVC</a></li>
+            <li><a class="dropdown-item" href="router1.php?action=mesUtilisations">Proposez une fonctionnalité originale</a></li>
+            <li><a class="dropdown-item" href="router1.php?action=mesAmeliorations">Proposez une amélioration du code MVC</a></li>
           </ul>
         </li>
         
@@ -127,7 +127,7 @@
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Se connecter</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="router1.php?action=doctolibConnexion">Login</a></li>
-            <li><a class="dropdown-item" href="router1.php?action=mesPropositions">s'inscrire</a></li>
+            <li><a class="dropdown-item" href="router1.php?action=doctolibInscription">s'inscrire</a></li>
             <li><a class="dropdown-item" href="router1.php?action=doctolibDeconnexion">deconnexion</a></li>
           </ul>
         </li>

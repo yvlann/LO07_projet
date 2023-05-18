@@ -11,7 +11,7 @@ require ($root . '/app/view/fragment/fragmentDoctolibHeader.html');
       require $root . '/app/view/fragment/fragmentDoctolibMenu.php';
       include $root . '/app/view/fragment/fragmentDoctolibJumbotron.html';
       
-      echo($results_num[$patientId]);
+      
       ?>
       <h3>Nombre de praticiens par patient</h3>
       

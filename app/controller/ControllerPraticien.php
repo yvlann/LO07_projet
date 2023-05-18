@@ -1,5 +1,5 @@
 
-<!-- ----- debut ControllerAdministrateur -->
+<!-- ----- debut ControllerPraticien -->
 
 <?php
 require_once '../model/ModelSpecialite.php';
@@ -136,6 +136,6 @@ public static function viewDisponibilite() {
 
 
 ?>
-<!-- ----- fin ControllerAdministrateur -->
+<!-- ----- fin ControllerPraticien -->
 
 
