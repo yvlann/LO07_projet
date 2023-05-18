@@ -93,7 +93,7 @@ class ModelPersonne {
   return $this->specialite_id;
  }
  
-
+//get all praticien
  public static function getAllPraticien() {
   try {
    $database = Model::getInstance();
@@ -108,6 +108,7 @@ class ModelPersonne {
   }
  }
  
+ //get all patient
  public static function getAllPatient() {
   try {
    $database = Model::getInstance();
@@ -122,6 +123,7 @@ class ModelPersonne {
   }
  }
  
+ //get all administrateur
  public static function getAllAdministrateur() {
   try {
    $database = Model::getInstance();
@@ -136,6 +138,7 @@ class ModelPersonne {
   }
  }
  
+ //retourne instance de ModelPersonne par son login
   public static function getOnePersonne($login) {
   try {
    $database = Model::getInstance();

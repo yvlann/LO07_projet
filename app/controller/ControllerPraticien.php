@@ -13,7 +13,7 @@ public static function viewDisponibilite() {
      session_start();
      $login=$_SESSION['login'];
      
-  $current = ModelPersonne::getOnePersonne($login);
+  $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
   $results=ModelRDV::getDisponibilite($current->getId());
   
   include 'config.php';
@@ -29,7 +29,7 @@ public static function viewDisponibilite() {
      session_start();
      $login=$_SESSION['login'];
      
-  $current = ModelPersonne::getOnePersonne($login);
+  $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
   include 'config.php';
   $vue = $root . '/app/view/praticien/viewAddDisponibilite.php';
   require ($vue);
@@ -42,7 +42,7 @@ public static function viewDisponibilite() {
      session_start();
      $login=$_SESSION['login'];
      
-  $current = ModelPersonne::getOnePersonne($login);
+  $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
   include 'config.php';
   $vue = $root . '/app/view/praticien/viewAddDisponibiliteWrong.php';
   require ($vue);
@@ -55,7 +55,7 @@ public static function viewDisponibilite() {
      session_start();
      $login=$_SESSION['login'];
      
-  $current = ModelPersonne::getOnePersonne($login);
+  $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
   $pid=$current->getId();
   $date_rdv=$_GET['date_rdv'];
   $nombre=$_GET['nombre'];
@@ -90,9 +90,11 @@ public static function viewDisponibilite() {
      session_start();
      $login=$_SESSION['login'];
      
-  $current = ModelPersonne::getOnePersonne($login);
+  $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
   $results=ModelRDV::getMesRdv($current->getId());
   $persons=array();
+  
+  //trouver tous mes RDV
   foreach ($results as $patientRdv) {
       $index=$patientRdv->getPatient_id();
       $rdv_date=$patientRdv->getRdv_date();
@@ -111,7 +113,7 @@ public static function viewDisponibilite() {
      session_start();
      $login=$_SESSION['login'];
      
-  $current = ModelPersonne::getOnePersonne($login);
+  $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
   $results=ModelRDV::getMesRdv($current->getId());
   $persons=array();
   foreach ($results as $patientRdv) {

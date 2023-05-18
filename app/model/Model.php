@@ -1,7 +1,7 @@
 
 <!-- ----- debut Model -->
 <?php
-
+//connecter le BD
 class Model extends PDO {
 
  private static $_instance;

@@ -50,7 +50,7 @@ class ModelRDV {
   return $this->rdv_date;
  }
  
- 
+ //retourne un hashliste signifie chaque patient a combien de praticien
   public static function getPraticienNb() {
   try {
    $database = Model::getInstance();
@@ -74,7 +74,7 @@ class ModelRDV {
   }
  }
  
- 
+ //retourne des instances ModelRDV ne sont pas disponible
   public static function getAllRdvOccupied() {
   try {
    $database = Model::getInstance();
@@ -188,6 +188,8 @@ class ModelRDV {
   }
  }
  
+ 
+ //insérer RDV à la fin
   public static function insertDisponibilite($patient_id, $praticien_id, $rdv_date) {
   try {
    $database = Model::getInstance();
@@ -216,7 +218,7 @@ class ModelRDV {
  }
  
  
- 
+ //vérifier si le date est disponible
     public static function checkDisponibilite($date,$pid) {
   try {
    $database = Model::getInstance();
@@ -237,7 +239,7 @@ class ModelRDV {
   }
  }
  
- 
+ //noter le id de patient dans le RDV
  public static function updateRdv($id_rdv,$id_patient) {
   try {
    $database = Model::getInstance();

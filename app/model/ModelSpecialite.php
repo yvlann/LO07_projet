@@ -53,6 +53,8 @@ class ModelSpecialite {
   }
  }
 
+ 
+ //on peut optimiser par cette fonction
  public static function getMany($query) {
   try {
    $database = Model::getInstance();
@@ -66,6 +68,7 @@ class ModelSpecialite {
   }
  }
 
+ //retourne tous les instances ModelSpecialite
  public static function getAll() {
   try {
    $database = Model::getInstance();
@@ -80,6 +83,8 @@ class ModelSpecialite {
   }
  }
 
+ 
+ //retourne une instance ModelSpecialite selon son id mais attention dans une liste
  public static function getOne($id) {
   try {
    $database = Model::getInstance();
@@ -96,6 +101,7 @@ class ModelSpecialite {
   }
  }
 
+ //insérer specialite à la fin
  public static function insert($label) {
   try {
    $database = Model::getInstance();

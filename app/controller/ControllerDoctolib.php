@@ -15,7 +15,7 @@ class ControllerDoctolib {
      session_start();
      if($_SESSION['login']!="vide"){
          $login=$_SESSION['login'];
-         $current = ModelPersonne::getOnePersonne($login);
+         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
      }
   
   include 'config.php';
@@ -45,7 +45,7 @@ class ControllerDoctolib {
      session_start();
      if($_SESSION['login']!="vide"){
          $login=$_SESSION['login'];
-         $current = ModelPersonne::getOnePersonne($login);
+         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
      }
      
   
@@ -61,7 +61,7 @@ class ControllerDoctolib {
      session_start();
      if($_SESSION['login']!="vide"){
          $login=$_SESSION['login'];
-         $current = ModelPersonne::getOnePersonne($login);
+         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
      }
      
   
@@ -80,7 +80,7 @@ class ControllerDoctolib {
      if($result!=null){
          $_SESSION['login']=$_GET['login'];
          
-         $current = ModelPersonne::getOnePersonne($_SESSION['login']);
+         $current = ModelPersonne::getOnePersonne($_SESSION['login']); //$current est instance de ModelPersonne de current login
      }else{
           header('Location: router1.php?action=doctolibConnexionWrong');//tourner à wrongpage
         exit();
@@ -103,7 +103,7 @@ class ControllerDoctolib {
      session_start();
      if($_SESSION['login']!="vide"){
          $login=$_SESSION['login'];
-         $current = ModelPersonne::getOnePersonne($login);
+         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
      }
      $specialite=ModelSpecialite::getAll();
      
@@ -120,7 +120,7 @@ class ControllerDoctolib {
      session_start();
      if($_SESSION['login']!="vide"){
          $login=$_SESSION['login'];
-         $current = ModelPersonne::getOnePersonne($login);
+         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
      }
      $existe=ModelPersonne::verifierPersonneExiste($_GET['login']);
      include 'config.php';
@@ -146,7 +146,7 @@ class ControllerDoctolib {
        session_start();
      if($_SESSION['login']!="vide"){
          $login=$_SESSION['login'];
-         $current = ModelPersonne::getOnePersonne($login);
+         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
      }
   include 'config.php';
   $vue = $root . '/public/documentation/mesUtilisations.php';
@@ -161,7 +161,7 @@ class ControllerDoctolib {
       session_start();
      if($_SESSION['login']!="vide"){
          $login=$_SESSION['login'];
-         $current = ModelPersonne::getOnePersonne($login);
+         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
      }
   include 'config.php';
   $vue = $root . '/public/documentation/mesAmeliorations.php';

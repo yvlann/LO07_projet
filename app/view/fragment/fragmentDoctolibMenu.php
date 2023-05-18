@@ -11,11 +11,13 @@
      $login=$_SESSION['login'];
      
   $current = ModelPersonne::getOnePersonne($login);*/
-    if($_SESSION['login']==="vide"){
+    
+    
+    if($_SESSION['login']==="vide"){//si il n'y a login
         echo("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU|||</a>");
     
     }else{
-        
+        //$current est instance de ModelPersonne de current login
         switch ($current->getStatut()) {
     
         case ModelPersonne::ADMINISTRATEUR :

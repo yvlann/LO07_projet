@@ -15,7 +15,7 @@ class ControllerPatient {
      session_start();
      $login=$_SESSION['login'];
      
-  $current = ModelPersonne::getOnePersonne($login);
+  $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
   
   
   include 'config.php';
@@ -30,7 +30,7 @@ class ControllerPatient {
      session_start();
      $login=$_SESSION['login'];
      
-  $current = ModelPersonne::getOnePersonne($login);
+  $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
   $results=ModelRDV::getPatientRdv($current->getId());
   $persons=array();
   foreach ($results as $patientRdv) {
@@ -51,7 +51,7 @@ class ControllerPatient {
       session_start();
      $login=$_SESSION['login'];
      
-  $current = ModelPersonne::getOnePersonne($login);
+  $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
   $disponible_id = ModelRDV::getDisponibiliteId();//get disponible praticien_id
   $personnes=array();
   foreach ($disponible_id as $element) {
@@ -69,7 +69,7 @@ class ControllerPatient {
       session_start();
      $login=$_SESSION['login'];
      
-  $current = ModelPersonne::getOnePersonne($login);
+  $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
   
   $seance=ModelRDV::getDisponibilite($_GET['id']);
   
@@ -85,7 +85,7 @@ class ControllerPatient {
       session_start();
      $login=$_SESSION['login'];
      
-  $current = ModelPersonne::getOnePersonne($login);
+  $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
   
   $seance=ModelRDV::updateRdv($_GET['id'],$current->getId());
   
