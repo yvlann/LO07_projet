@@ -15,15 +15,15 @@
     
     if($_SESSION['login']==="vide"){
         echo("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU |</a>");
-    }else{
+    } else{
         $status = array(
-            ModelPersonne::ADMINISTRATEUR => "administrateur | ".$current->getPrenom(). " ".$current->getNom() ." |",
-            ModelPersonne::PRATICIEN => "praticien | ".$current->getPrenom(). " ".$current->getNom() ." |",
-            ModelPersonne::PATIENT => "patient | ".$current->getPrenom(). " ".$current->getNom() ." |"
+            ModelPersonne::ADMINISTRATEUR => "administrateur | ",
+            ModelPersonne::PRATICIEN => "praticien | ",
+            ModelPersonne::PATIENT => "patient | "
         );
         
         try {
-            echo ("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU | ". $status[$current->getStatut()]);
+            echo ("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU | ". $status[$current->getStatut()] .$current->getPrenom(). " ".$current->getNom() ." |");
         } catch (Exception $ex) {
             echo("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU |</a>");
         }
