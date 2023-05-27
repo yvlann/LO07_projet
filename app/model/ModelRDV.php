@@ -149,22 +149,21 @@ class ModelRDV {
  
 //retourner RDV selon patient_id
     public static function getPatientRdv($pid) {
-  try {
-   $database = Model::getInstance();
-   
-   $query = "select * from rendezvous where patient_id = :pid ";
-   $statement = $database->prepare($query);
-   $statement->execute([
-     'pid' => $pid
-   ]);
-   $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRDV");
-   
-   return $results;
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return NULL;
-  }
- }
+        try {
+            $database = Model::getInstance();
+            $query = "select * from rendezvous where patient_id = :pid ORDER BY rdv_date ASC";
+            $statement = $database->prepare($query);
+            $statement->execute([
+              'pid' => $pid
+            ]);
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRDV");
+
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
  
  
 
