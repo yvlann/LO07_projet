@@ -2,18 +2,22 @@
 <!-- ----- debut de la page cave_acceuil -->
 <?php include 'fragment/fragmentDoctolibHeader.html'; ?>
 <body>
-  <div class="container">
     <?php
-    require 'fragment/fragmentDoctolibMenu.php';
-    
-    include 'fragment/fragmentDoctolibJumbotron.html';
+        require 'fragment/fragmentDoctolibMenu.php';
     ?>
-  </div>   
+    <main class="min-vh-100">
+        <div class="container">
+            <?php
+                include 'fragment/fragmentDoctolibJumbotron.html';
+            ?>
+      </div>   
+    </main>
   
-  
-  <?php
-  include 'fragment/fragmentDoctolibFooter.html';
-  ?>
+    <footer class="w-100 px-4 border-top border-dark ">
+        <?php
+            include 'fragment/fragmentDoctolibFooter.html';
+        ?>
+    </footer>
 
   <!-- ----- fin de la page cave_acceuil -->
 
