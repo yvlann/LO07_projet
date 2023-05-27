@@ -18,48 +18,48 @@ $action = htmlspecialchars($param["action"]);
 
 // --- Liste des méthodes autorisées
 switch ($action) {
- case "specialiteReadAll" :
- case "specialiteReadOne" :
- case "specialiteReadId" :
- case "specialiteCreate" :
- case "specialiteCreated" :
- case "praticienReadAll" :
- case "nombrePraticienParPatient" :
- case "infoAll" :
-  ControllerAdministrateur::$action();
-  break;
+    case "specialiteReadAll" :
+    case "specialiteReadOne" :
+    case "specialiteReadId" :
+    case "specialiteCreate" :
+    case "specialiteCreated" :
+    case "praticienReadAll" :
+    case "nombrePraticienParPatient" :
+    case "infoAll" :
+        ControllerAdministrateur::$action();
+        break;
 
- case "viewDisponibilite" :
- case "disponibiliteAdd" :
- case "disponibiliteAdded" :
- case "disponibiliteAddWrong" :
- case "viewRdvPatients" :
- case "viewMesPatients" :
-  ControllerPraticien::$action();
-  break;
+    case "viewDisponibilite" :
+    case "disponibiliteAdd" :
+    case "disponibiliteAdded" :
+    case "disponibiliteAddWrong" :
+    case "viewRdvPatients" :
+    case "viewMesPatients" :
+        ControllerPraticien::$action();
+        break;
 
- case "viewMoncompte" :
- case "viewRdv" :
- case "reserveReadPraticien" :
- case "reserveReadSceance" :
- case "reserveSuccess" :
-  ControllerPatient::$action();
-  break;
+    case "viewMoncompte" :
+    case "viewRdv" :
+    case "reserveReadPraticien" :
+    case "reserveReadSceance" :
+    case "reserveSuccess" :
+        ControllerPatient::$action();
+        break;
 
- case "doctolibDeconnexion" :
- case "doctolibVerification" :
- case "doctolibConnexion" :
- case "doctolibConnexionWrong" :
- case "doctolibInscription" :
- case "doctolibInscriptionVerification" :
- case "mesUtilisations" :
- case "mesAmeliorations" :
-  ControllerDoctolib::$action();
-  break;
+    case "doctolibDeconnexion" :
+    case "doctolibVerification" :
+    case "doctolibConnexion" :
+    case "doctolibConnexionWrong" :
+    case "doctolibInscription" :
+    case "doctolibInscriptionVerification" :
+    case "mesUtilisations" :
+    case "mesAmeliorations" :
+        ControllerDoctolib::$action();
+        break;
 
- default:
-  $action = "doctolibAccueil";
-  ControllerDoctolib::$action();
+    default:
+        $action = "doctolibAccueil";
+        ControllerDoctolib::$action();
 }
 ?>
 <!-- ----- Fin Router1 -->
