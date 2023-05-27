@@ -18,10 +18,6 @@ $action = htmlspecialchars($param["action"]);
 
 // --- Liste des méthodes autorisées
 switch ($action) {
-    
-    
-    
-    
  case "specialiteReadAll" :
  case "specialiteReadOne" :
  case "specialiteReadId" :
@@ -32,7 +28,6 @@ switch ($action) {
  case "infoAll" :
   ControllerAdministrateur::$action();
   break;
-
 
  case "viewDisponibilite" :
  case "disponibiliteAdd" :
@@ -48,10 +43,8 @@ switch ($action) {
  case "reserveReadPraticien" :
  case "reserveReadSceance" :
  case "reserveSuccess" :
-
   ControllerPatient::$action();
   break;
-
 
  case "doctolibDeconnexion" :
  case "doctolibVerification" :
@@ -61,16 +54,11 @@ switch ($action) {
  case "doctolibInscriptionVerification" :
  case "mesUtilisations" :
  case "mesAmeliorations" :
-     
   ControllerDoctolib::$action();
   break;
 
-
-
- // Tache par défaut
  default:
   $action = "doctolibAccueil";
-  
   ControllerDoctolib::$action();
 }
 ?>

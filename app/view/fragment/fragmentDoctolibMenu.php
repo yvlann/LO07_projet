@@ -13,30 +13,20 @@
   $current = ModelPersonne::getOnePersonne($login);*/
     
     
-    if($_SESSION['login']==="vide"){//si il n'y a login
-        echo("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU|||</a>");
-    
+    if($_SESSION['login']==="vide"){
+        echo("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU |</a>");
     }else{
-        //$current est instance de ModelPersonne de current login
-        switch ($current->getStatut()) {
-    
-        case ModelPersonne::ADMINISTRATEUR :
-            echo("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU|administrateur|".$current->getPrenom()." ".$current->getNom()."|</a>");
-            break;
-        case ModelPersonne::PRATICIEN :
-            echo("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU|praticien|".$current->getPrenom()." ".$current->getNom()."|</a>");
-            break;
-        case ModelPersonne::PATIENT :
-            echo("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU|patient|".$current->getPrenom()." ".$current->getNom()."|</a>");
-            break;
+        $status = array(
+            ModelPersonne::ADMINISTRATEUR => "administrateur | ".$current->getPrenom(). " ".$current->getNom() ." |",
+            ModelPersonne::PRATICIEN => "praticien | ".$current->getPrenom(). " ".$current->getNom() ." |",
+            ModelPersonne::PATIENT => "patient | ".$current->getPrenom(). " ".$current->getNom() ." |"
+        );
         
-            
-        default :
-            echo("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU|||</a>");
+        try {
+            echo ("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU | ". $status[$current->getStatut()]);
+        } catch (Exception $ex) {
+            echo("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU |</a>");
         }
-
-        
-        
     }
     
     
@@ -50,11 +40,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           
     <?php
-       
-    
-    //menu admin
     if($_SESSION['login']!="vide"&&$current->getStatut()==ModelPersonne::ADMINISTRATEUR){
-    
         echo("<li class=\"nav-item dropdown\">");
         echo("<a class=\"nav-link dropdown-toggle\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">administrateur</a>");
         echo("<ul class=\"dropdown-menu\">");
@@ -68,12 +54,7 @@
         echo("<li><a class=\"dropdown-item\" href=\"router1.php?action=infoAll\">Info</a></li>");
         echo("</ul>");
         echo("</li>");
-        
-        
-        
-        //menu praticien
     }elseif ($_SESSION['login']!="vide"&&$current->getStatut()==ModelPersonne::PRATICIEN) {
-        
         echo("<li class=\"nav-item dropdown\">");
         echo("<a class=\"nav-link dropdown-toggle\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">praticien</a>");
         echo("<ul class=\"dropdown-menu\">");
@@ -86,11 +67,7 @@
         
         echo("</ul>");
         echo("</li>");
-              
-        
-        //menu patient
     }elseif ($_SESSION['login']!="vide"&&$current->getStatut()==ModelPersonne::PATIENT) {
-        
         echo("<li class=\"nav-item dropdown\">");
         echo("<a class=\"nav-link dropdown-toggle\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">patient</a>");
         echo("<ul class=\"dropdown-menu\">");
