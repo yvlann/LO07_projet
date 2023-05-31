@@ -153,9 +153,9 @@ class ControllerDoctolib {
             $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
         }
         include 'config.php';
-        $vue = $root . '/public/documentation/mesAmeliorations.php';
+        $vue = $root . '/app/view/doctolib/viewAmeliorations.php';
         if (DEBUG) {
-            echo ("ControllerDoctolib : caveAccueil : vue = $vue");
+            echo ("ControllerDoctolib : viewAmeliorations : vue = $vue");
         }
         require ($vue);
     }
