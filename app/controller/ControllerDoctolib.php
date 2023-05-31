@@ -133,14 +133,15 @@ class ControllerDoctolib {
  
     public static function mesUtilisations() {
         session_start();
-        if($_SESSION['login']!="vide"){
-            $login=$_SESSION['login'];
-            $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
-        }
+        $login=$_SESSION['login'];
+        $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
+        
+        $results = ModelSpecialite::specialiteNRDVVille();
+        
         include 'config.php';
-        $vue = $root . '/public/documentation/mesUtilisations.php';
+        $vue = $root . '/app/view/doctolib/viewUtilisations.php';
         if (DEBUG) {
-            echo ("ControllerProducteur : caveAccueil : vue = $vue");
+            echo ("ControllerDoctolib : viewUtilisations : vue = $vue");
         }
         require ($vue);
     }
