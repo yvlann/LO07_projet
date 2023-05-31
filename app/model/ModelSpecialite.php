@@ -120,6 +120,27 @@ class ModelSpecialite {
             return -1;
         }
     }
+    
+    public static function specialiteNRDVVille() {
+        try {
+            $database = Model::getInstance();
+            $query = "SELECT p.adresse AS ville, s.label AS specialité, COUNT(*) AS n_rdv FROM rendezvous r JOIN personne p ON r.praticien_id = p.id JOIN specialite s ON p.specialite_id = s.id GROUP BY p.adresse, s.label ORDER BY n_rdv DESC;";
+            $statement = $database->prepare($query);
+            $statement->execute();
+            
+            $cols = [];
+            for ($i = 0; $i < $statement->columnCount(); $i++) {
+                $colInfo = $statement->getColumnMeta($i);
+                $cols[] = $colInfo['name'];
+            }
+            $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return array($cols, $data);
+        } catch (Exception $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return array([], []);
+        }
+    }
 }
 ?>
 <!-- ----- fin ModelSpecialite -->
