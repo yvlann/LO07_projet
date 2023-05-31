@@ -28,8 +28,6 @@
             echo("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU |</a>");
         }
     }
-    
-    
     ?>
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
@@ -78,21 +76,8 @@
         echo("</ul>");
         echo("</li>");
               
-    }else {
-              
-          }
-    
+    }
     ?>
-
-        
-          
-          
-            
-            
-                      
-        
-
-        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Innovations</a>
           <ul class="dropdown-menu">
