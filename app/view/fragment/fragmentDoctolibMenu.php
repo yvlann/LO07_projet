@@ -61,7 +61,7 @@
         echo("<li><a class=\"dropdown-item\" href=\"router1.php?action=disponibiliteAdd\">Ajout de nouvelles disponibilités</a></li>");
         echo("<li role=\"separator\" class=\"dropdown-divider\"></li>");
         echo("<li><a class=\"dropdown-item\" href=\"router1.php?action=viewRdvPatients\">Liste des rendez-vous avec le nom des patients</a></li>");
-        echo("<li><a class=\"dropdown-item\" href=\"router1.php?action=viewMesPatients\">Nombre de mes patients(sans doublon)</a></li>");
+        echo("<li><a class=\"dropdown-item\" href=\"router1.php?action=viewMesPatients\">Liste de mes patients(sans doublon)</a></li>");
         
         echo("</ul>");
         echo("</li>");

@@ -85,15 +85,7 @@ class ControllerPraticien {
         $login=$_SESSION['login'];
      
         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
-        $results=ModelRDV::getMesRdv($current->getId());
-        $persons=array();
-
-        //trouver tous mes RDV
-        foreach ($results as $patientRdv) {
-            $index=$patientRdv->getPatient_id();
-            $rdv_date=$patientRdv->getRdv_date();
-            $persons[$rdv_date]=ModelPersonne::getOnePersonneId($index);
-        }
+        $results=ModelRDV::getPraticienRdv($current->getId());
 
         include 'config.php';
         $vue = $root . '/app/view/praticien/viewListePatientRdv.php';
@@ -109,13 +101,7 @@ class ControllerPraticien {
         $login=$_SESSION['login'];
      
         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
-        $results=ModelRDV::getMesRdv($current->getId());
-        $persons=array();
-        foreach ($results as $patientRdv) {
-            $index=$patientRdv->getPatient_id();
-
-            $persons[$index]=ModelPersonne::getOnePersonneId($index);
-        }
+        $results=ModelRDV::getPatients($current->getId());
 
         include 'config.php';
         $vue = $root . '/app/view/praticien/viewListePatient.php';
