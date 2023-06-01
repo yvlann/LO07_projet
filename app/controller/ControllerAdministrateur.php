@@ -42,8 +42,8 @@ class ControllerAdministrateur {
         $login=$_SESSION['login'];
      
         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
-        $vin_id = $_GET['id'];
-        $results = ModelSpecialite::getOne($vin_id); //$results est une instance ModelSpecialite id=$vin_id
+        $specialite_id = $_GET['id'];
+        $results = ModelSpecialite::getOne($specialite_id); //$results est une instance ModelSpecialite id=$vin_id
 
         // ----- Construction chemin de la vue
         include 'config.php';
@@ -86,8 +86,7 @@ class ControllerAdministrateur {
         $login=$_SESSION['login'];
 
         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
-        $results = ModelPersonne::getAllPraticien();  //$results sont touts les instances ModelPersonne dont statut=1
-        $results_spec = ModelSpecialite::getAll(); //$results_spec sont touts les instances ModelSpecialite
+        $results = ModelPersonne::getAllPraticien();  
         // ----- Construction chemin de la vue
         include 'config.php';
         $vue = $root . '/app/view/administrateur/viewAllPraticien.php';
@@ -103,8 +102,7 @@ class ControllerAdministrateur {
         $login=$_SESSION['login'];
 
         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
-        $results = ModelPersonne::getAllPatient(); //$results sont touts les instances ModelPersonne dont statut=2
-        $results_num = ModelRDV::getPraticienNb(); //$results_num est une hashliste signifie chaque patient a combien de praticiens
+        $results = ModelPersonne::getPraticiensPatient(); 
 
         // ----- Construction chemin de la vue
         include 'config.php';

@@ -80,11 +80,17 @@ class ModelRDV {
             $query = "select * from rendezvous WHERE patient_id>0";
             $statement = $database->prepare($query);
             $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRDV");
-            return $results;
+            $cols = [];
+            for ($i = 0; $i < $statement->columnCount(); $i++) {
+                $colInfo = $statement->getColumnMeta($i);
+                $cols[] = $colInfo['name'];
+            }
+            $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return array($cols, $data);
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return NULL;
+            return array([], []);
         }
     }
  
