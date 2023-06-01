@@ -94,29 +94,62 @@ class ModelPersonne {
     public static function getAllPraticien() {
         try {
             $database = Model::getInstance();
-            $query = "select * from personne where statut=1 AND id>0";
+            $query = "SELECT p.id, p.nom, p.prenom, p.adresse, s.label AS specialite FROM personne p JOIN specialite s ON p.specialite_id = s.id WHERE statut=1 AND p.id<>0";
             $statement = $database->prepare($query);
             $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelPersonne");
-            return $results;
+            $cols = [];
+            for ($i = 0; $i < $statement->columnCount(); $i++) {
+                $colInfo = $statement->getColumnMeta($i);
+                $cols[] = $colInfo['name'];
+            }
+            $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return array($cols, $data);
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return NULL;
+            return array([], []);
         }
     }
  
-    //get all patient
     public static function getAllPatient() {
         try {
             $database = Model::getInstance();
-            $query = "select * from personne where statut=2 AND id>0";
+            $query = "SELECT * FROM personne WHERE statut=2 AND id <> 0";
             $statement = $database->prepare($query);
             $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelPersonne");
-            return $results;
+            $cols = [];
+            for ($i = 0; $i < $statement->columnCount(); $i++) {
+                $colInfo = $statement->getColumnMeta($i);
+                $cols[] = $colInfo['name'];
+            }
+            $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return array($cols, $data);
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return NULL;
+            return array([], []);
+        }
+    }
+
+
+    //get praticiens/patient
+    public static function getPraticiensPatient() {
+        try {
+            $database = Model::getInstance();
+            $query = "SELECT r.patient_id, p.nom, p.prenom, COUNT(DISTINCT praticien_id) AS n_praticiens FROM rendezvous r JOIN personne p ON r.patient_id = p.id WHERE p.id <> 0 GROUP BY r.patient_id;";
+            $statement = $database->prepare($query);
+            $statement->execute();
+            $cols = [];
+            for ($i = 0; $i < $statement->columnCount(); $i++) {
+                $colInfo = $statement->getColumnMeta($i);
+                $cols[] = $colInfo['name'];
+            }
+            $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return array($cols, $data);
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return array([], []);
         }
     }
  
@@ -127,11 +160,17 @@ class ModelPersonne {
             $query = "select * from personne where statut=0 AND id>0";
             $statement = $database->prepare($query);
             $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelPersonne");
-            return $results;
+            $cols = [];
+            for ($i = 0; $i < $statement->columnCount(); $i++) {
+                $colInfo = $statement->getColumnMeta($i);
+                $cols[] = $colInfo['name'];
+            }
+            $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return array($cols, $data);
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return NULL;
+            return array([], []);
         }
     }
  
