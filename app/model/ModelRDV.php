@@ -99,14 +99,36 @@ class ModelRDV {
         try {
             $database = Model::getInstance();
 
-            $query = "select * from rendezvous where praticien_id = :pid AND patient_id=0";
+            $query = "select rdv_date from rendezvous where praticien_id = :pid AND patient_id=0";
             $statement = $database->prepare($query);
             $statement->execute([
               'pid' => $pid
             ]);
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRDV");
+            $cols = [];
+            for ($i = 0; $i < $statement->columnCount(); $i++) {
+                $colInfo = $statement->getColumnMeta($i);
+                $cols[] = $colInfo['name'];
+            }
+            $data = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-            return $results;
+            return array($cols, $data);
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return array([], []);
+        }
+    }
+    
+    public static function getPraticienDisponibilite($pid) {
+        try {
+            $database = Model::getInstance();
+
+            $query = "select id, rdv_date from rendezvous where praticien_id = :pid AND patient_id=0 AND rdv_date > NOW()";
+            $statement = $database->prepare($query);
+            $statement->execute([
+              'pid' => $pid
+            ]);
+
+            return $statement->fetchAll(PDO::FETCH_ASSOC);;
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
             return NULL;
@@ -133,39 +155,93 @@ class ModelRDV {
     }
 
     //return RDV of praticien_id
-    public static function getMesRdv($pid) {
+    public static function getPatients($pid) {
         try {
             $database = Model::getInstance();
 
-            $query = "select * from rendezvous where praticien_id = :pid AND patient_id>0";
+            $query = "select p.nom, p.prenom, p.adresse from rendezvous r JOIN personne p ON r.patient_id = p.id where praticien_id = :pid AND patient_id<>0";
             $statement = $database->prepare($query);
             $statement->execute([
                 'pid' => $pid
             ]);
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRDV");
+            $cols = [];
+            for ($i = 0; $i < $statement->columnCount(); $i++) {
+                $colInfo = $statement->getColumnMeta($i);
+                $cols[] = $colInfo['name'];
+            }
+            $data = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-            return $results;
+            return array($cols, $data);
         } catch (PDOException $e) {
          printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-         return NULL;
+         return array([], []);
         }
     }
- 
-    //retourner RDV selon patient_id
+    
     public static function getPatientRdv($pid) {
         try {
             $database = Model::getInstance();
-            $query = "select * from rendezvous where patient_id = :pid ORDER BY rdv_date ASC";
+            $query = "SELECT p.nom, p.prenom, r.rdv_date FROM personne AS p JOIN rendezvous AS r ON r.praticien_id = p.id WHERE r.patient_id = :pid";
             $statement = $database->prepare($query);
             $statement->execute([
               'pid' => $pid
             ]);
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRDV");
+            $cols = [];
+            for ($i = 0; $i < $statement->columnCount(); $i++) {
+                $colInfo = $statement->getColumnMeta($i);
+                $cols[] = $colInfo['name'];
+            }
+            $data = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-            return $results;
+            return array($cols, $data);
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return NULL;
+            return array([], []);
+        }
+    }
+ 
+    //retourner RDV selon patient_id
+    public static function getMesRdv($pid) {
+        try {
+            $database = Model::getInstance();
+            $query = "SELECT p.nom, p.prenom, r.rdv_date FROM rendezvous r JOIN personne p ON r.patient_id = p.id WHERE p.id = :pid ORDER BY r.rdv_date ASC";
+            $statement = $database->prepare($query);
+            $statement->execute([
+              'pid' => $pid
+            ]);
+            $cols = [];
+            for ($i = 0; $i < $statement->columnCount(); $i++) {
+                $colInfo = $statement->getColumnMeta($i);
+                $cols[] = $colInfo['name'];
+            }
+            $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return array($cols, $data);
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return array([], []);
+        }
+    }
+    
+    public static function getPraticienRdv($pid) {
+        try {
+            $database = Model::getInstance();
+            $query = "SELECT p.nom, p.prenom, r.rdv_date FROM rendezvous r JOIN personne p ON r.patient_id = p.id WHERE r.praticien_id = :pid AND r.patient_id <> 0 ORDER BY r.rdv_date ASC";
+            $statement = $database->prepare($query);
+            $statement->execute([
+              'pid' => $pid
+            ]);
+            $cols = [];
+            for ($i = 0; $i < $statement->columnCount(); $i++) {
+                $colInfo = $statement->getColumnMeta($i);
+                $cols[] = $colInfo['name'];
+            }
+            $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return array($cols, $data);
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return array([], []);
         }
     }
  

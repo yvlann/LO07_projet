@@ -192,6 +192,29 @@ class ModelPersonne {
             return NULL;
         }
     }
+    
+    public static function getMonCompte($login) {
+        try {
+            $database = Model::getInstance();
+
+            $query = "select * from personne where login = :login";
+            $statement = $database->prepare($query);
+            $statement->execute([
+              'login' => $login
+            ]);
+            $cols = [];
+            for ($i = 0; $i < $statement->columnCount(); $i++) {
+                $colInfo = $statement->getColumnMeta($i);
+                $cols[] = $colInfo['name'];
+            }
+            $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return array($cols, $data);
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return array([], []);
+        }
+    }
  
     //fetch personne par id
     public static function getOnePersonneId($id) {

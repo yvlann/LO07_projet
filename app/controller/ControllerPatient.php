@@ -11,7 +11,7 @@ class ControllerPatient {
         $login=$_SESSION['login'];
      
         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
-  
+        $results = ModelPersonne::getMonCompte($login);
         include 'config.php';
         $vue = $root . '/app/view/patient/viewMonCompte.php';
         if (DEBUG) {
@@ -27,12 +27,6 @@ class ControllerPatient {
      
         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
         $results=ModelRDV::getPatientRdv($current->getId());
-        $persons=array();
-        foreach ($results as $patientRdv) {
-            $index=$patientRdv->getPraticien_id();
-            $rdv_date=$patientRdv->getRdv_date();
-            $persons[$rdv_date]=ModelPersonne::getOnePersonneId($index);
-        }
   
         include 'config.php';
         $vue = $root . '/app/view/patient/viewMonRdv.php';
@@ -67,7 +61,7 @@ class ControllerPatient {
      
         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
 
-        $seance=ModelRDV::getDisponibilite($_GET['id']);
+        $results=ModelRDV::getPraticienDisponibilite($_GET['id']);
 
         // ----- Construction chemin de la vue
         include 'config.php';

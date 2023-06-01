@@ -20,8 +20,8 @@ require ($root . '/app/view/fragment/fragmentDoctolibHeader.html');
         <input type="hidden" name='action' value='reserveSuccess'>
         <label for="id">Séance : </label> <select class="form-control" name='id' style="width: 500px">
             <?php
-            foreach ($seance as $periode) {
-             echo ("<option value=".$periode->getId().">".$periode->getRdv_date()."</option>");
+            foreach ($results as $res) {
+             echo ("<option value=".$res["id"].">".$res["rdv_date"]."</option>");
             }
             ?>
         </select>
