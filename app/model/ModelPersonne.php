@@ -1,5 +1,5 @@
 
-<!-- ----- debut ModelVin -->
+<!-- ----- debut ModelPersonne -->
 
 <?php
 require_once 'Model.php';
@@ -322,4 +322,4 @@ class ModelPersonne {
     }
 }
 ?>
-<!-- ----- fin ModelVin -->
+<!-- ----- fin ModelPersonne -->

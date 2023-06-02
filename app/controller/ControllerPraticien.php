@@ -45,8 +45,6 @@ class ControllerPraticien {
         require ($vue);
     }
  
- 
-    // Affiche un formulaire pour récupérer les informations d'un nouveau vin.
     // La clé est gérée par le systeme et pas par l'internaute
     public static function disponibiliteAdded() {
         session_start();
