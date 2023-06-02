@@ -17,7 +17,7 @@ class ControllerAdministrateur {
         include 'config.php';
         $vue = $root . '/app/view/administrateur/viewAllSpecialite.php';
         if (DEBUG) {
-            echo ("ControllerVin : vinReadAll : vue = $vue");
+            echo ("ControllerAdministrateur : specialiteReadAll : vue = $vue");
         }
         require ($vue);
     }
@@ -43,7 +43,7 @@ class ControllerAdministrateur {
      
         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
         $specialite_id = $_GET['id'];
-        $results = ModelSpecialite::getOne($specialite_id); //$results est une instance ModelSpecialite id=$vin_id
+        $results = ModelSpecialite::getOne($specialite_id); 
 
         // ----- Construction chemin de la vue
         include 'config.php';
@@ -91,7 +91,7 @@ class ControllerAdministrateur {
         include 'config.php';
         $vue = $root . '/app/view/administrateur/viewAllPraticien.php';
         if (DEBUG) {
-            echo ("ControllerVin : vinReadAll : vue = $vue");
+            echo ("ControllerAdministrateur : praticienReadAll : vue = $vue");
         }
         require ($vue);
     }
@@ -108,7 +108,7 @@ class ControllerAdministrateur {
         include 'config.php';
         $vue = $root . '/app/view/administrateur/viewNombrePraticien.php';
         if (DEBUG) {
-            echo ("ControllerVin : vinReadAll : vue = $vue");
+            echo ("ControllerAdministrateur : nombrePraticienParPatient : vue = $vue");
         }
         require ($vue);
    }
@@ -129,7 +129,7 @@ class ControllerAdministrateur {
         include 'config.php';
         $vue = $root . '/app/view/administrateur/viewAllInfo.php';
         if (DEBUG) {
-            echo ("ControllerVin : vinReadAll : vue = $vue");
+            echo ("ControllerAdministrateur : infoAll : vue = $vue");
         }
         require ($vue);
     }
