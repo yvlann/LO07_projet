@@ -136,7 +136,8 @@ class ControllerDoctolib {
         $login=$_SESSION['login'];
         $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
         
-        $results = ModelSpecialite::specialiteNRDVVille();
+        $results_spe = ModelSpecialite::getSpecialiteNRDVVille();
+        $results_rank = ModelSpecialite::getPraticienRankRDV();
         
         include 'config.php';
         $vue = $root . '/app/view/doctolib/viewUtilisations.php';
