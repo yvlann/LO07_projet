@@ -96,14 +96,16 @@ class ControllerDoctolib {
             $current = ModelPersonne::getOnePersonne($login); //$current est instance de ModelPersonne de current login
         }
         $specialite=ModelSpecialite::getAll();
-     
+       
   
         include 'config.php';
         $vue = $root . '/app/view/doctolib/viewDoctolibInscription.php';
+        
         if (DEBUG) {
             echo ("ControllerDoctolib : doctolibAccueil : vue = $vue");
         }
         require ($vue);
+        
     }
  
     //verifier si login est valide
@@ -115,7 +117,7 @@ class ControllerDoctolib {
         }
         $existe=ModelPersonne::verifierPersonneExiste($_GET['login']);
         include 'config.php';
-        if(NULL==$existe){
+        if(NULL==$existe && isset($_GET['nom']) && isset($_GET['prenom']) && isset($_GET['adresse']) && isset($_GET['login']) && isset($_GET['password'])){
             $id = ModelPersonne::insertPersonne($_GET['nom'], $_GET['prenom'], $_GET['adresse'], $_GET['login'], $_GET['password'], $_GET['statut'], $_GET['specialite']);
             $inserted = ModelPersonne::getOnePersonneId($id);
 

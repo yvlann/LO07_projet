@@ -13,7 +13,7 @@ require ($root . '/app/view/fragment/fragmentDoctolibHeader.html');
             include $root . '/app/view/fragment/fragmentDoctolibJumbotron.html';
           ?> 
             <h5 class="text-danger">Formulaire d'inscription</h5>
-            <h6 class="text-danger">              Login déjà existe</h6>
+            <h6 class="text-danger">              Login déjà existe ou info pas suffisant</h6>
           <form role="form" method='get' action='router1.php'>
             <div class="form-group">
               <input type="hidden" name='action' value='doctolibInscriptionVerification'>
@@ -72,9 +72,10 @@ require ($root . '/app/view/fragment/fragmentDoctolibHeader.html');
             <p/>
             <label for="specialite">Votre spécialité si vous être praticien : </label> <select class="form-control" id='specialite' name='specialite' style="width: 400px">
                   <?php
-                  foreach ($specialite as $element) {
-                   echo ("<option value=".$element->getId().">".$element->getLabel()."</option>");
-                  }
+                  $length = count($specialite[1]);
+                    for($i=0;$i<$length;$i++){
+                        echo ("<option value=".$specialite[1][$i]["id"].">".$specialite[1][$i]["label"]."</option>");
+                    }
                   ?>
               </select>
             </div>

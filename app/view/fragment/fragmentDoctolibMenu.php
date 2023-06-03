@@ -23,7 +23,7 @@
         );
         
         try {
-            echo ("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU | ". $status[$current->getStatut()] .$current->getPrenom(). " ".$current->getNom() ." |");
+            echo ("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU | ". $status[$current->getStatut()] .$current->getPrenom(). " ".$current->getNom() ." |</a>");
         } catch (Exception $ex) {
             echo("<a class=\"navbar-brand\" href=\"router1.php?action=DoctolibAccueil\">BOULET-XU |</a>");
         }
