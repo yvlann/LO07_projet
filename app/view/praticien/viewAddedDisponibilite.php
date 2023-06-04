@@ -13,7 +13,7 @@ require ($root . '/app/view/fragment/fragmentDoctolibHeader.html');
     <!-- ===================================================== -->
     <?php
     if ($results) {
-     echo ("<h3>Les nouveau disponibilités a été ajouté </h3>");
+     echo ("<h3>Les nouvelles disponibilités ont été ajouté </h3>");
      echo("<table class = \"table table-striped table-bordered\">");
      echo("<thead>");
      echo("<tr><th scope = \"col\">id</th><th scope = \"col\">patient_id</th><th scope = \"col\">praticien_id</th><th scope = \"col\">rdv_date</th></tr>");
