@@ -13,7 +13,7 @@ require ($root . '/app/view/fragment/fragmentDoctolibHeader.html');
     <!-- ===================================================== -->
     <?php
     if ($results) {
-     echo ("<h3>Le nouveau spécialité a été ajouté </h3>");
+     echo ("<h3>La nouvelle spécialité a été ajouté </h3>");
      echo("<ul>");
      echo ("<li>id = " . $results . "</li>");
      echo ("<li>label = " . $_GET['label'] . "</li>");
